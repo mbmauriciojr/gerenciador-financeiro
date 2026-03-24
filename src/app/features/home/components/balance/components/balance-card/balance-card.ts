@@ -1,3 +1,4 @@
+import { ZERO } from '@angular/cdk/keycodes';
 import { Component, computed, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 
@@ -5,7 +6,8 @@ type CardType = 'income' | 'outcome' | 'balance';
 
 enum ValueCssClass {
   INCOME = 'income',
-  OUTCOME = 'outcome'
+  OUTCOME = 'outcome',
+  ZERO = 'zero'
 }
 
 @Component({
@@ -19,13 +21,17 @@ export class BalanceCard {
   label = input.required<string>();
   value = input.required<number>();
 
-  cssClass = computed<CardType>(() => {
+  cssClass = computed<ValueCssClass>(() => {
     if (this.type() === 'income') {
       return ValueCssClass.INCOME;
     }
 
     if (this.type() === 'outcome') {
       return ValueCssClass.OUTCOME;
+    }
+
+    if (this.value() === 0) {
+      return ValueCssClass.ZERO;
     }
 
     return this.value() > 0 ? ValueCssClass.INCOME : ValueCssClass.OUTCOME;

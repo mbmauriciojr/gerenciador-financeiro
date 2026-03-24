@@ -13,6 +13,7 @@ export class Home {
     { value: 50, type: 'income' },
     { value: 25, type: 'income' },
     { value: 25, type: 'income' },
-    { value: 75, type: 'income' }
+    { value: 75, type: 'income' },
+    { value: 75, type: 'outcome' },
   ]);
 }
